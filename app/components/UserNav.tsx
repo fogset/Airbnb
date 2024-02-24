@@ -4,6 +4,7 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
+    DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
 import {
@@ -12,6 +13,8 @@ import {
     LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import Link from "next/link";
+
 async function UserNav() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
@@ -37,6 +40,32 @@ async function UserNav() {
             <DropdownMenuContent align="end" className="w-[200px]">
                 {user ? (
                     <>
+                        <DropdownMenuItem>
+                            <form className="w-full">
+                                <button
+                                    type="submit"
+                                    className="w-full text-start"
+                                >
+                                    Airbnb your Home
+                                </button>
+                            </form>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/my-home" className="w-full">
+                                My Listings
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/favorites" className="w-full">
+                                My Favorites
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/reservations" className="w-full">
+                                My Reservations
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
                         <DropdownMenuItem>
                             <LogoutLink className="w-full">Logout</LogoutLink>
                         </DropdownMenuItem>
